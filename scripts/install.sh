@@ -9,11 +9,15 @@ PROJECT_NAME="iqsoo_PagodaPanel"
 PROJECT_SITE="https://www.iqsoo.com"
 PROJECT_GITHUB="https://github.com/iQSOO/iqsoo_PagodaPanel"
 
-BT_URL="https://download.bt.cn/install/install_panel.sh"
+BT_HOST="https://download.bt.cn"
+BT_PATH="/install/install_panel.sh"
+BT_URL="${BT_HOST}${BT_PATH}"
 BT_FILE="install_panel.sh"
 BT_ARG="ed8484bec"
 
-AAPANEL_URL="https://www.aapanel.com/script/install_panel_en.sh"
+AAPANEL_HOST="https://www.aapanel.com"
+AAPANEL_PATH="/script/install_panel_en.sh"
+AAPANEL_URL="${AAPANEL_HOST}${AAPANEL_PATH}"
 AAPANEL_FILE="install_panel_en.sh"
 AAPANEL_ARG="ipssl"
 
