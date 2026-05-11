@@ -17,6 +17,7 @@ AAPANEL_URL="https://www.aapanel.com/script/install_panel_en.sh"
 AAPANEL_FILE="install_panel_en.sh"
 AAPANEL_ARG="ipssl"
 
+DEFAULT_PROFILE="1"
 TMP_DIR="$(mktemp -d "/tmp/${PROJECT_NAME}.XXXXXX")"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
@@ -50,13 +51,13 @@ BANNER
   say "${DIM}${PROJECT_GITHUB}${RESET}"
   line
   say "${BOLD}Deployment Profiles / 部署方案${RESET}"
-  say "  ${GREEN}1.${RESET} BT Panel CN      ${DIM}宝塔面板国内中文版${RESET}"
+  say "  ${GREEN}1.${RESET} BT Panel CN      ${DIM}宝塔面板国内中文版  [Default]${RESET}"
   say "  ${GREEN}2.${RESET} aaPanel Global   ${DIM}aaPanel 海外国际版${RESET}"
   line
   say "${BOLD}Features / 特性${RESET}"
   say "  ${GREEN}•${RESET} Unified SSH entry point"
   say "  ${GREEN}•${RESET} Interactive deployment workflow"
-  say "  ${GREEN}•${RESET} Beginner-friendly server initialization"
+  say "  ${GREEN}•${RESET} Press Enter to use the recommended default profile"
   say "  ${GREEN}•${RESET} Designed for VPS, cloud servers and WordPress deployment"
   line
 }
@@ -157,11 +158,12 @@ menu() {
   banner
   say "${BOLD}请选择部署方案 / Select deployment profile / 請選擇部署方案${RESET}"
   say
-  say "  ${GREEN}1)${RESET} 宝塔面板 国内中文版    ${DIM}BT Panel CN${RESET}"
+  say "  ${GREEN}1)${RESET} 宝塔面板 国内中文版    ${DIM}BT Panel CN · 默认推荐${RESET}"
   say "  ${GREEN}2)${RESET} aaPanel 海外国际版      ${DIM}aaPanel Global${RESET}"
   say "  ${YELLOW}0)${RESET} 退出                    ${DIM}Exit${RESET}"
   say
-  read -r -p "输入序号后回车 [1/2/0]: " choice
+  read -r -p "输入序号后回车 [1/2/0，默认 1]: " choice
+  choice="${choice:-$DEFAULT_PROFILE}"
 
   case "$choice" in
     1) install_bt ;;
