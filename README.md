@@ -1,4 +1,4 @@
-# iqsoo_PagodaPanel
+# iQSOO_PagodaPanel
 
 <p align="center">
   <b>BT Panel CN + aaPanel Global · One-Click Deployment Selector · Powered by iQSOO</b>
