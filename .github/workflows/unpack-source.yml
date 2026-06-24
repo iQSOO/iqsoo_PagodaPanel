@@ -3,16 +3,20 @@ name: publish-preview-source
 on:
   push:
     branches: [iqsoo-panel-preview]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
 
 jobs:
   unpack:
+    if: github.head_ref == 'iqsoo-panel-preview' || github.ref_name == 'iqsoo-panel-preview'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: iqsoo-panel-preview
           fetch-depth: 0
       - name: Verify and unpack source
         shell: bash
@@ -21,7 +25,7 @@ jobs:
           cat .bootstrap/part-* | base64 -d > /tmp/iqsoo-panel-source.tar.gz
           echo "49e63365d8d6c00c920fab125bb4911da3056cc372b5a7f433e376efc9a3751a  /tmp/iqsoo-panel-source.tar.gz" | sha256sum -c -
           tar -xzf /tmp/iqsoo-panel-source.tar.gz
-          rm -rf .bootstrap .github/workflows/unpack-source.yml
+          rm -rf .bootstrap .bootstrap-trigger .github/workflows/unpack-source.yml
       - name: Commit published source
         shell: bash
         run: |
